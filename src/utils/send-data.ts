@@ -6,3 +6,4 @@ export const sendData = (kcal: number) => () => {
   };
   fetch(`.netlify/functions/fauna`, requestOptions);
 };
+
