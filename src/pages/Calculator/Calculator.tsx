@@ -42,6 +42,14 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
     { [k in string]: { value: number; kcal: number } }
   >({});
 
+  const resetAll = ()=>{
+    const resetState: { [key: string]: { value: number; kcal: number } } = {};
+    for (const itemName in values) {
+      resetState[itemName] = { value: 0, kcal: 0 };
+    }
+    setValues(resetState);
+  };
+
   const handleChange = (itemName: string, itemKcal: number) => (
     value: number
   ) => {
@@ -80,6 +88,9 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
           <div className={classes.buttonContainer}>
             <Button variant="contained" onClick={sendData(result)}>
               {result} Kcal
+            </Button>
+            <Button variant="contained" onClick={resetAll}>
+              Reset
             </Button>
           </div>
         </div>
@@ -179,7 +190,7 @@ const styles = (theme: CustomTheme): Record<ClassNames, CSSProperties> => ({
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     minHeight: 36,
     flex: 1,
     marginBottom: theme.spacing(3),
